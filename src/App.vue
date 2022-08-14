@@ -14,26 +14,20 @@
 import { ref } from 'vue'
 import Toggler from './components/Toggler.vue'
 
-let indexes = []
+const indexes = []
 const checked = ref([false, false, false])
 
 const updatedHandler = (index, value) => {
   if (value && !indexes.includes(index)) {
-    const newIndexes = [...indexes]
-    newIndexes.push(index)
-    indexes = newIndexes
+    indexes.push(index)
   }
 
   if (!value && indexes.includes(index)) {
-    const newIndexes = [...indexes]
-    newIndexes.splice(indexes.indexOf(index), 1)
-    indexes = newIndexes
+    indexes.splice(indexes.indexOf(index), 1)
   }
 
   if (indexes.length === 3) {
-    const newIndexes = [...indexes]
-    newIndexes.splice(0, 1)
-    indexes = newIndexes
+    indexes.splice(0, 1)
   }
 
   const newChecked = [false, false, false]
